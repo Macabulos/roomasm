@@ -17,9 +17,7 @@ include('./components/main.php');
     <title>Class Schedule</title>
     <!-- Include your CSS and JavaScript files here -->
 </head>
-
 <body>
-
     <div class="wrapper">
         <div id="element" class="hero-body-subject-add">
             <h2>
@@ -43,20 +41,22 @@ include('./components/main.php');
         <th>Actions</th>
     </tr>
 </thead>
-
 <tbody>
-<?php
-if ($result && $result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        ?>
-        <tr class="del<?php echo $row['schedule_id']; ?>">
-        <td><?php echo htmlspecialchars($row['floor_number'] ?? 'N/A'); ?></td>
-<td><?php echo htmlspecialchars($row['room_name'] ?? 'N/A'); ?></td>
-<td><?php echo htmlspecialchars($row['day_of_week'] ?? 'N/A'); ?></td>
-<td><?php echo htmlspecialchars($row['start_time'] ?? 'N/A'); ?></td>
-<td><?php echo htmlspecialchars($row['end_time'] ?? 'N/A'); ?></td>
-<td><?php echo htmlspecialchars($row['subject_name'] ?? 'N/A'); ?></td>
-<td><?php echo htmlspecialchars(($row['first_name'] ?? '') . ' ' . ($row['last_name'] ?? '')); ?></td>
+                    <?php
+                    include('fetch_schedule.php'); // Fetch schedule dat
+                    // Fetch data using the function from fetch_schedule.php
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            $id = $row['schedule_id'];
+                            ?>
+                            <tr class="del<?php echo $id; ?>">
+                                <td><?php echo htmlspecialchars($row['floor_number']); ?></td>
+                                <td><?php echo htmlspecialchars($row['room_name']); ?></td>
+                                <td><?php echo htmlspecialchars($row['day_of_week']); ?></td>
+                                <td><?php echo htmlspecialchars($row['start_time']); ?></td>
+                                <td><?php echo htmlspecialchars($row['end_time']); ?></td>
+                                <td><?php echo htmlspecialchars($row['SubjectName']); ?></td>
+                                <td><?php echo htmlspecialchars($row['FirstName'] . " " . $row['LastName']); ?></td>
             <td align="center">
                 <a class="btn btn-info" href="edit_schedule.php?id=<?php echo $row['schedule_id']; ?>">Edit</a>
                 <a class="btn btn-danger" data-toggle="modal" href="#deleteModal<?php echo $row['schedule_id']; ?>">Delete</a>
