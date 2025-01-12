@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt_insert->execute()) {
             echo "<script>
                 alert('Floor added successfully.');
-                window.location.href = 'addsched.php'; // Optional: Redirect after success
+                window.location.href = 'add_room.php'; // Optional: Redirect after success
             </script>";
         } else {
             echo "<script>

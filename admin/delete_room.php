@@ -2,23 +2,37 @@
 include('./connection/dbcon.php');
 include('./connection/session.php'); 
 
+// Validate and sanitize the 'id' parameter
+$id = intval($_GET['id']);
 
-$id=$_GET['id'];
+// Get the current user information
+$logout_query = mysqli_query($conn, "SELECT * FROM room_users WHERE User_id = $id_session") or die(mysqli_error($conn));
+$user_row = mysqli_fetch_array($logout_query);
 
-$logout_query=mysqli_query($conn,"select * from users where User_id=$id_session")or die(mysqli_error());
-$user_row=mysqli_fetch_array($logout_query);
-$user_name=$user_row['User_Type'];
+if (!$user_row) {
+    die("User session not found.");
+}
 
+$user_name = $user_row['User_Type'];
 
-$result=mysqli_query($conn,"select * from room where room_id='$id'")or die(mysqli_error);
-$row=mysqli_fetch_array($result);
-$f=$row['room_name'];
+// Fetch the room to delete
+$result = mysqli_query($conn, "SELECT * FROM rooms WHERE room_id = '$id'") or die("Error fetching room: " . mysqli_error($conn));
+$row = mysqli_fetch_array($result);
 
+if (!$row) {
+    die("Room with ID $id not found.");
+}
 
+$room_name = $row['room_name'];
 
-mysqli_query($conn,"delete from room where room_id='$id'")or die(mysqli_error());
-mysqli_query($conn,"INSERT INTO history (data,action,date,user)VALUES('$f', 'Delete Room', NOW(),'$user_name')")or die(mysqli_error());
+// Delete the room
+$delete_query = mysqli_query($conn, "DELETE FROM rooms WHERE room_id = '$id'") or die("Error deleting room: " . mysqli_error($conn));
 
+// Log the action in the history table
+$history_query = mysqli_query($conn, "INSERT INTO history (data, action, date, user) 
+    VALUES ('$room_name', 'Delete Room', NOW(), '$user_name')") or die("Error logging history: " . mysqli_error($conn));
 
+// Redirect back to room.php
 header('location:room.php');
+exit;
 ?>
