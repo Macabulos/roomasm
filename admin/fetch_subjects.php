@@ -1,13 +1,9 @@
 <?php
 // Connect to the database  
-$conn = new mysqli('localhost', 'root', '', 'isadfc');
-
-if ($conn->connect_error) {
-    die('Connection failed: ' . $conn->connect_error);
-}
+include('./connection/dbcon.php');
 
 // Fetch subjects for the selected teacher
-$sql = "SELECT subject_code FROM subjects";
+$sql = "SELECT subject_name FROM subjects";
 $result = $conn->query($sql);  // Fixed the query execution
 
 // Initialize the option string
@@ -16,7 +12,7 @@ $option = "";
 // Check if subjects are available
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {  // Corrected fetch_assoc() usage
-        $option .= "<option value='" . $row["subject_code"] . "'>" . $row["subject_code"] . "</option>";  // Concatenate option tags correctly
+        $option .= "<option value='" . $row["subject_name"] . "'>" . $row["subject_name"] . "</option>";  // Concatenate option tags correctly
     }
 } else {
     $option = "<option>No subjects available</option>";  // If no subjects, display a message

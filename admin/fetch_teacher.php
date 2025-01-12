@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get form data
     $subject_name = $conn->real_escape_string($_POST['subject_name']);
     $subjectDescription = $conn->real_escape_string($_POST['subjectDescription']);
-    $teacherID = $_POST['teacherID'];
+    $teacher_id = $_POST['teacher_id'];
 
     // Check for duplicate subject
     $check_subject_sql = "SELECT * FROM subjects WHERE subject_name = '$subject_name'";
@@ -18,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Insert subject into database
-    $sql = "INSERT INTO subjects (subject_name, SubjectDescription, TeacherID) 
-            VALUES ('$subject_name', '$subjectDescription', '$teacherID')";
+    $sql = "INSERT INTO subjects (subject_name, SubjectDescription, teacher_id) 
+            VALUES ('$subject_name', '$subjectDescription', '$teacher_id')";
     if ($conn->query($sql) === TRUE) {
         echo "<script>alert('Subject added successfully!'); window.location.href='add_subject.php';</script>";
     } else {
