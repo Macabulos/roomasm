@@ -55,8 +55,8 @@ include('./components/main.php');
                                 <td><?php echo htmlspecialchars($row['day_of_week']); ?></td>
                                 <td><?php echo htmlspecialchars($row['start_time']); ?></td>
                                 <td><?php echo htmlspecialchars($row['end_time']); ?></td>
-                                <td><?php echo htmlspecialchars($row['SubjectName']); ?></td>
-                                <td><?php echo htmlspecialchars($row['FirstName'] . " " . $row['LastName']); ?></td>
+                                <td><?php echo htmlspecialchars($row['subject_code']); ?></td>
+                                <td><?php echo htmlspecialchars($row['first_name'] . " " . $row['last_name']); ?></td>
             <td align="center">
                 <a class="btn btn-info" href="edit_schedule.php?id=<?php echo $row['schedule_id']; ?>">Edit</a>
                 <a class="btn btn-danger" data-toggle="modal" href="#deleteModal<?php echo $row['schedule_id']; ?>">Delete</a>
