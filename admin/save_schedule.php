@@ -9,8 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $days = $_POST['day_of_week'] ?? ''; // Use null coalescing to handle missing fields
     $start_time = $conn->real_escape_string($_POST['start_time']);
     $end_time = $conn->real_escape_string($_POST['end_time']);
-    $subject_id = intval($_POST['subject']);
-    $teacher_id = intval($_POST['teacher']);
+    $subject_id = $conn->real_escape_string($_POST['subject_name']);
+    $teacher_id = $conn->real_escape_string($_POST['teacher']);
 
     // Validate inputs
     if (empty($floor_id) || empty($room_id) || empty($days) || empty($start_time) || empty($end_time) || empty($subject_id) || empty($teacher_id)) {

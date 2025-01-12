@@ -1,4 +1,4 @@
-<?php
+aa<?php
 include('./connection/session.php');
 include('./components/header.php');
 include('./connection/dbcon.php');
@@ -31,7 +31,7 @@ include('./components/main.php');
         <hr>
 
 
-        <form id="save_voter" class="form-horizontal">
+        <form id="save_voter" class="form-horizontal" method="POST" action="save_schedule.php">
             <fieldset>
                 </br>
                 <div class="hai_naku">
@@ -139,26 +139,27 @@ include('./components/main.php');
                                     <div class="controls">
                                         <select id="subject" name="subject" required>
                                             <option value="">Select Subject</option>
+                                            <?php include_once('fetch_subjects.php'); ?>
                                         </select>
                                     </div>
                                 </div>
 
                                 <!-- JavaScript for fetching subjects -->
-                                <script>
+                                <!-- <script>
                                     function fetchSubjects() {
-                                        var TeacherID = $('#teacher').val();  // Get selected teacher ID
+                                        var subject_id = $('#teacher').val();  // Get selected teacher ID
                                         $('#subject').html('<option>Loading...</option>'); // Show loading message in subject dropdown
 
                                         $.ajax({
                                             url: 'fetch_subjects.php',
                                             type: 'GET',
-                                            data: { TeacherID: TeacherID },
+                                            data: { subject_id: subject_id },
                                             success: function (response) {
                                                 $('#subject').html(response);
                                             }
                                         });
                                     }
-                                </script>
+                                </script> -->
 
                                 <!-- Save Button -->
                                 <div class="control-group">

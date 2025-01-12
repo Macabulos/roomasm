@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<script>
             alert('Floor already exists.');
             window.history.back();
-        </script>";
+        </script>"; 
     } else {
         // Insert new floor into the database
         $sql_insert = "INSERT INTO floors (floor_number) VALUES (?)";

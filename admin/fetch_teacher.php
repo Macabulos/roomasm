@@ -5,12 +5,12 @@ include('./connection/session.php');
 // Handle form submission for adding subject
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get form data
-    $subjectName = $conn->real_escape_string($_POST['subjectName']);
+    $subject_name = $conn->real_escape_string($_POST['subject_name']);
     $subjectDescription = $conn->real_escape_string($_POST['subjectDescription']);
     $teacherID = $_POST['teacherID'];
 
     // Check for duplicate subject
-    $check_subject_sql = "SELECT * FROM subjects WHERE SubjectName = '$subjectName'";
+    $check_subject_sql = "SELECT * FROM subjects WHERE subject_name = '$subject_name'";
     $subject_result = $conn->query($check_subject_sql);
     if ($subject_result->num_rows > 0) {
         echo "<script>alert('Subject already exists.'); window.location.href='add_subject.php';</script>";
@@ -18,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Insert subject into database
-    $sql = "INSERT INTO subjects (SubjectName, SubjectDescription, TeacherID) 
-            VALUES ('$subjectName', '$subjectDescription', '$teacherID')";
+    $sql = "INSERT INTO subjects (subject_name, SubjectDescription, TeacherID) 
+            VALUES ('$subject_name', '$subjectDescription', '$teacherID')";
     if ($conn->query($sql) === TRUE) {
         echo "<script>alert('Subject added successfully!'); window.location.href='add_subject.php';</script>";
     } else {
@@ -28,6 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Fetch teachers for the dropdown
-$teachers_query = "SELECT TeacherID, CONCAT(FirstName, ' ', LastName) AS TeacherName FROM teachers";
+$teachers_query = "SELECT id, CONCAT(first_name, ' ', last_name) AS TeacherName FROM teaching_faculty_information";
 $teachers_result = $conn->query($teachers_query);
 ?>

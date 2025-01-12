@@ -47,7 +47,7 @@ include('./components/main.php');
 										<div class="control-group">
 											<label class="control-label" for="input01">First Name:</label>
 											<div class="controls">
-												<input class="item" type="text" name="firstName" class="firstName"
+												<input class="item" type="text" name="first_naame" class="firstName"
 													required>
 											</div>
 										</div>
@@ -56,7 +56,7 @@ include('./components/main.php');
 										<div class="control-group">
 											<label class="control-label" for="input01">Last Name:</label>
 											<div class="controls">
-												<input class="item" type="text" name="lastName" class="lastName"
+												<input class="item" type="text" name="last_name" class="lastName"
 													required>
 											</div>
 										</div>

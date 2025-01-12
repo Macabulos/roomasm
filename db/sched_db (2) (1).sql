@@ -260,24 +260,7 @@ INSERT INTO `rooms` (`room_id`, `room_name`, `floor_id`) VALUES
 --
 -- Table structure for table `schedules`
 --
-
-CREATE TABLE `schedules` (
-  `schedule_id` int(11) NOT NULL,
-  `floor_id` int(11) NOT NULL,
-  `room_id` int(11) DEFAULT NULL,
-  `day_of_week` enum('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday') NOT NULL,
-  `start_time` time NOT NULL,
-  `end_time` time NOT NULL,
-  `SubjectID` int(11) NOT NULL,
-  `TeacherID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `schedules`
---
-
-INSERT INTO `schedules` (`schedule_id`, `floor_id`, `room_id`, `day_of_week`, `start_time`, `end_time`, `SubjectID`, `TeacherID`) VALUES
-(1, 1, 1, 'Monday', '07:00:00', '08:30:00', 1, 1);
+ssch
 
 -- --------------------------------------------------------
 
@@ -340,13 +323,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`User_id`, `UserName`, `Password`, `User_Type`, `FirstName`, `LastName`, `College`) VALUES
-(6, 'jk', 'jk', 'Admin', 'john kevin', 'lorayna', ''),
-(8, 'aki', 'aki', 'User', 'achilles', 'Palma', 'COE'),
-(11, 'jkl', 'jkl', 'User', 'john kevin', 'lorayna', 'SAS'),
-(12, 'kj', 'kj', 'User', 'kent', 'lorayna', 'SAS'),
-(13, 'admin', 'admin', 'Admin', 'Christine', 'Redoblo', 'CIT'),
-(14, 'teph', 'teph', 'Admin', 'john kevin ', 'lorayna', 'CIT'),
-(15, 'jsmith', 'jsmith123', 'User', 'John', 'Smith', 'SAS');
+(1, 'jk', 'jk', 'Admin', 'john kevin', 'lorayna', ''),
+(2, 'admin', 'admin', 'Admin', 'Christine', 'Redoblo', 'CIT');
+
 
 --
 -- Indexes for dumped tables
@@ -377,7 +356,6 @@ ALTER TABLE `rooms`
 ALTER TABLE `schedules`
   ADD PRIMARY KEY (`schedule_id`),
   ADD KEY `room_id` (`room_id`),
-  ADD KEY `SubjectID` (`SubjectID`),
   ADD KEY `floor_id` (`floor_id`);
 
 --

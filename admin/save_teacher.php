@@ -7,11 +7,11 @@ $response = array();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	// Get form data
-	$firstName = $conn->real_escape_string($_POST['firstName']);
-	$lastName = $conn->real_escape_string($_POST['lastName']);
+	$first_name = $conn->real_escape_string($_POST['first_name']);
+	$last_name = $conn->real_escape_string($_POST['last_name']);
 
 	// Check for duplicate teacher
-	$check_teacher_sql = "SELECT * FROM teachers WHERE FirstName = '$firstName' AND LastName = '$lastName'";
+	$check_teacher_sql = "SELECT * FROM teaching_faculty_information WHERE first_name = '$first_name' AND last_name = '$last_name'";
 	$teacher_result = $conn->query($check_teacher_sql);
 	if ($teacher_result->num_rows > 0) {
 		// Teacher already exists
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 
 	// Insert teacher into database
-	$sql = "INSERT INTO teachers (FirstName, LastName) VALUES ('$firstName', '$lastName')";
+	$sql = "INSERT INTO teaching_faculty_information (first_name, last_name) VALUES ('$first_name', '$last_name')";
 	if ($conn->query($sql) === TRUE) {
 		// Teacher successfully added
 		$response['status'] = 'success';

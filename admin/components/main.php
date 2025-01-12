@@ -6,10 +6,10 @@
                <li class="divider-vertical"></li>
                <li><a href="schedule.php"><i class="icon-group icon-large"></i>Class Schedule</a></li>
                <li class="divider-vertical"></li>
-               <li><a href="record.php"><i class="icon-user icon-large"></i>Add Teacher</a></li>
-               <li class="divider-vertical"></li>
-               <li><a href="subject.php"><i class="icon-group icon-large"></i>Add Subject</a></li>
-               <li class="divider-vertical"></li>
+               <!-- <li><a href="record.php"><i class="icon-user icon-large"></i>Add Teacher</a></li>
+               <li class="divider-vertical"></li> -->
+               <!-- <li><a href="subject.php"><i class="icon-group icon-large"></i>Add Subject</a></li>
+               <li class="divider-vertical"></li> -->
                <li><a href="room.php"><i class="icon-table icon-large"></i>Add Room</a></li>
                <li class="divider-vertical"></li>
                <li><a href="report.php"><i class="icon-download icon-large"></i>Room Report</a></li>

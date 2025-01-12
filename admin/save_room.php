@@ -1,4 +1,4 @@
-<?php
+a<?php
 include('./connection/dbcon.php');
 include('./connection/session.php');
 
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Room already exists for this floor
         echo "<script>
         alert('The room already exists on this floor.');
-        window.location.href = 'addsched.php'; // Optional: Redirect after success
+        window.location.href = 'add_room.php'; // Optional: Redirect after success
     </script>";
         exit;
     }
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($stmt->execute()) {
         echo "<script>
         alert('Room added successfully.');
-        window.location.href = 'addsched.php'; // Optional: Redirect after success
+        window.location.href = 'add_room.php'; // Optional: Redirect after success
     </script>";
     } else {
         echo "<script>

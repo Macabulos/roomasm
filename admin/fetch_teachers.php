@@ -2,7 +2,7 @@
 include('./connection/dbcon.php');
 include('./connection/session.php');
 
-$sql = "SELECT TeacherID, CONCAT(FirstName, ' ', LastName) AS TeacherName FROM teachers";
+$sql = "SELECT id, CONCAT(first_name, ' ', last_name) AS TeacherName FROM teaching_faculty_information";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

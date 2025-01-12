@@ -1,29 +1,29 @@
 <?php
-if (isset($_GET['TeacherID'])) {
-    $TeacherID = $_GET['TeacherID'];
+// Connect to the database  
+$conn = new mysqli('localhost', 'root', '', 'isadfc');
 
-    // Connect to the database
-    $conn = new mysqli('localhost', 'root', '', 'schd');
-    if ($conn->connect_error) {
-        die('Connection failed: ' . $conn->connect_error);
-    }
-
-    // Fetch subjects for the selected teacher
-    $sql = "SELECT SubjectID, SubjectName FROM subjects WHERE TeacherID = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $TeacherID);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo "<option value='" . $row['SubjectID'] . "'>" . $row['SubjectName'] . "</option>";
-        }
-    } else {
-        echo "<option value=''>No subject available</option>";
-    }
-
-    $stmt->close();
-    $conn->close();
+if ($conn->connect_error) {
+    die('Connection failed: ' . $conn->connect_error);
 }
+
+// Fetch subjects for the selected teacher
+$sql = "SELECT subject_code FROM subjects";
+$result = $conn->query($sql);  // Fixed the query execution
+
+// Initialize the option string
+$option = "";
+
+// Check if subjects are available
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {  // Corrected fetch_assoc() usage
+        $option .= "<option value='" . $row["subject_code"] . "'>" . $row["subject_code"] . "</option>";  // Concatenate option tags correctly
+    }
+} else {
+    $option = "<option>No subjects available</option>";  // If no subjects, display a message
+}
+
+$conn->close();
+
+// Output the options (you can echo this variable to use it in the HTML)
+echo $option;
 ?>

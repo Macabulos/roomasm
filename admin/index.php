@@ -16,7 +16,7 @@ if (isset($_POST['Login'])) {
     $Password = clean($_POST['Password']);
 
     // Query for login
-    $login_query = mysqli_query($conn, "SELECT * FROM users WHERE UserName='$UserName' AND Password='$Password'");
+    $login_query = mysqli_query($conn, "SELECT * FROM room_users WHERE UserName='$UserName' AND Password='$Password'");
     $count = mysqli_num_rows($login_query);
     $row = mysqli_fetch_array($login_query);
 

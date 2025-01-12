@@ -27,7 +27,7 @@ include('./components/main.php');
 						</thead>
 						<tbody>
 							<?php
-							$result = mysqli_query($conn, "SELECT s.SubjectID, s.SubjectName, s.SubjectDescription, t.TeacherID, CONCAT(t.FirstName, ' ', t.LastName) AS TeacherName 
+							$result = mysqli_query($conn, "SELECT s.subjectID, s.subject_name, s.subject_code, t.TeacherID, CONCAT(t.FirstName, ' ', t.LastName) AS TeacherName 
                                                           FROM subjects s 
                                                           INNER JOIN teachers t ON s.TeacherID = t.TeacherID") or die(mysqli_error($conn));
 							while ($row = mysqli_fetch_array($result)) {
